@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RunReadPNGAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PickProtectAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

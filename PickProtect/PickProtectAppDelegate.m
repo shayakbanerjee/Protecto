@@ -6,13 +6,22 @@
 //  Copyright (c) 2013 Shak. All rights reserved.
 //
 
-#import "RunReadPNGAppDelegate.h"
+#import "PickProtectAppDelegate.h"
+#import "deviceSelector.h"
 
-@implementation RunReadPNGAppDelegate
+@implementation PickProtectAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    deviceSelector *dS = [[deviceSelector alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *rC = [[UINavigationController alloc] initWithRootViewController:dS];
+    [rC setNavigationBarHidden:NO];
+    
+    self.window.rootViewController = rC;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 							

@@ -1,18 +1,18 @@
-//
-//  main.m
-//  PickProtect
-//
-//  Created by Shak on 10/4/13.
-//  Copyright (c) 2013 Shak. All rights reserved.
-//
+/*
+ *  main.m
+ *
+ * Created by Ole Andreas Torvmark on 10/2/12.
+ * Copyright (c) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ * ALL RIGHTS RESERVED
+ */
 
 #import <UIKit/UIKit.h>
 
-#import "RunReadPNGAppDelegate.h"
+#import "PickProtectAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([RunReadPNGAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([PickProtectAppDelegate class]));
     }
 }
