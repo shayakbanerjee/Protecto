@@ -9,15 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BLEDevice.h"
-#import "TraqBasicViewController.h"
 #import "PocketMaarViewController.h"
+#import "AdditionalDevDataController.h"
+#define MAX_SEARCH_TRIES 5
 
 @interface deviceSelector : UITableViewController <CBCentralManagerDelegate,CBPeripheralDelegate>
 
 @property (strong,nonatomic) CBCentralManager *m;
 @property (strong,nonatomic) NSMutableArray *nDevices;
 @property (strong,nonatomic) NSMutableArray *sensorTags;
+@property (strong,nonatomic) NSMutableArray *storedUUIDs;
 @property NSTimer *devSearchTimer;
+@property NSInteger numberOfSearchTries;
+@property (strong, nonatomic) UIActivityIndicatorView* busyIndicator;
+@property NSIndexPath* searchButtonIndex;
 
 -(NSMutableDictionary *) makeSensorTagConfiguration;
 

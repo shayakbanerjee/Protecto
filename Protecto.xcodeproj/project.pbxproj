@@ -9,12 +9,23 @@
 /* Begin PBXBuildFile section */
 		F75E2453181F3D23006A081A /* PocketMaarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E2452181F3D23006A081A /* PocketMaarViewController.m */; };
 		F75E2457181F4D15006A081A /* Alert-Icon-.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E2454181F4D15006A081A /* Alert-Icon-.png */; };
-		F75E2459181F4D15006A081A /* Lock-Unlock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E2456181F4D15006A081A /* Lock-Unlock-icon.png */; };
-		F75E245B18217E37006A081A /* Lock-Lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E245A18217E37006A081A /* Lock-Lock-icon.png */; };
 		F75E245D18218626006A081A /* AlarmEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = F75E245C18218626006A081A /* AlarmEffect.wav */; };
 		F75E246118218775006A081A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E246018218775006A081A /* AVFoundation.framework */; };
 		F75E246318218BBA006A081A /* whistle_icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E246218218BB9006A081A /* whistle_icon_114x114.png */; };
 		F75E246718218F91006A081A /* whistle_icon_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E246618218F91006A081A /* whistle_icon_144x144.png */; };
+		F75F97E91873249D000D44C1 /* ProtectoNavControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75F97E81873249D000D44C1 /* ProtectoNavControllerViewController.m */; };
+		F783D8A71879D6CE00BD6649 /* Protecto_icon1_120.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8A31879D6CE00BD6649 /* Protecto_icon1_120.png */; };
+		F783D8A81879D6CE00BD6649 /* Protecto_icon1_152.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8A41879D6CE00BD6649 /* Protecto_icon1_152.png */; };
+		F783D8A91879D6CE00BD6649 /* Protecto_icon2_120.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8A51879D6CE00BD6649 /* Protecto_icon2_120.png */; };
+		F783D8AA1879D6CE00BD6649 /* Protecto_icon2_152.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8A61879D6CE00BD6649 /* Protecto_icon2_152.png */; };
+		F783D8B3187A46F600BD6649 /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8B1187A46F600BD6649 /* tick.png */; };
+		F783D8B4187A46F600BD6649 /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8B2187A46F600BD6649 /* warning.png */; };
+		F783D8B6187A53CC00BD6649 /* add-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8B5187A53CC00BD6649 /* add-1.png */; };
+		F783D8B8187A795B00BD6649 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8B7187A795B00BD6649 /* cross.png */; };
+		F783D8BB188259DE00BD6649 /* 1389563609_lock-unlock_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8B9188259DE00BD6649 /* 1389563609_lock-unlock_blue.png */; };
+		F783D8BC188259DE00BD6649 /* 1389563845_lock_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8BA188259DE00BD6649 /* 1389563845_lock_blue.png */; };
+		F783D8BF18825CAB00BD6649 /* 1389564581_circle_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8BD18825CAA00BD6649 /* 1389564581_circle_red.png */; };
+		F783D8C018825CAB00BD6649 /* 1389564606_circle_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F783D8BE18825CAA00BD6649 /* 1389564606_circle_green.png */; };
 		F784226517FF21F700557835 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784226417FF21F700557835 /* UIKit.framework */; };
 		F784226717FF21F700557835 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784226617FF21F700557835 /* Foundation.framework */; };
 		F784226917FF21F700557835 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784226817FF21F700557835 /* CoreGraphics.framework */; };
@@ -24,26 +35,51 @@
 		F784227717FF21F700557835 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F784227617FF21F700557835 /* Default.png */; };
 		F784227917FF21F700557835 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F784227817FF21F700557835 /* Default@2x.png */; };
 		F784227B17FF21F700557835 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F784227A17FF21F700557835 /* Default-568h@2x.png */; };
-		F784228417FF21F700557835 /* TraqBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F784228317FF21F700557835 /* TraqBasicViewController.m */; };
 		F785CED6180504EA00B59F0A /* deviceSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F785CED5180504E900B59F0A /* deviceSelector.m */; };
 		F785CED81805109300B59F0A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F785CED71805109300B59F0A /* CoreBluetooth.framework */; };
+		F78702561866572F00A6F829 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = F78702541866572F00A6F829 /* add.png */; };
+		F78702571866572F00A6F829 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = F78702551866572F00A6F829 /* list.png */; };
+		F787025A1866577400A6F829 /* ProtectoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F78702591866577400A6F829 /* ProtectoSettingsViewController.m */; };
+		F787025C186658B200A6F829 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F787025B186658B200A6F829 /* settings.png */; };
+		F78739D4186D2C2B00AFB076 /* 1388136450_30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F78739D1186D2C2B00AFB076 /* 1388136450_30@2x.png */; };
+		F78739D5186D2C2B00AFB076 /* 1388136493_54_Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F78739D2186D2C2B00AFB076 /* 1388136493_54_Settings@2x.png */; };
+		F78739D6186D2C2B00AFB076 /* 1388136530_519691-199_CircledPlus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F78739D3186D2C2B00AFB076 /* 1388136530_519691-199_CircledPlus@2x.png */; };
+		F78937DF187355DE00798088 /* math-minus-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F78937DD187355DE00798088 /* math-minus-icon.png */; };
+		F78937E0187355DE00798088 /* Sign-Add-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F78937DE187355DE00798088 /* Sign-Add-icon.png */; };
 		F78E75541805030300939F65 /* BLEDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F78E754D1805030200939F65 /* BLEDevice.m */; };
 		F78E75551805030300939F65 /* BLEUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F78E754F1805030300939F65 /* BLEUtility.m */; };
 		F78E75561805030300939F65 /* SensorHistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = F78E75511805030300939F65 /* SensorHistoryData.m */; };
 		F78E75571805030300939F65 /* Sensors.m in Sources */ = {isa = PBXBuildFile; fileRef = F78E75531805030300939F65 /* Sensors.m */; };
+		F7A1C8C0186F3E0A00501891 /* ProtectoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A1C8BF186F3E0A00501891 /* ProtectoMainViewController.m */; };
+		F7A1C8C31872086A00501891 /* AdditionalDevDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A1C8C21872086A00501891 /* AdditionalDevDataController.m */; };
+		F7B59B86186B825F0042097D /* 1388136530_519691-199_CircledPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = F7B59B84186B825F0042097D /* 1388136530_519691-199_CircledPlus.png */; };
+		F7B59B87186B825F0042097D /* 1388136493_54_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F7B59B85186B825F0042097D /* 1388136493_54_Settings.png */; };
+		F7B59B89186B829D0042097D /* 1388136450_30.png in Resources */ = {isa = PBXBuildFile; fileRef = F7B59B88186B829D0042097D /* 1388136450_30.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F75E2451181F3D23006A081A /* PocketMaarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketMaarViewController.h; sourceTree = "<group>"; };
 		F75E2452181F3D23006A081A /* PocketMaarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketMaarViewController.m; sourceTree = "<group>"; };
 		F75E2454181F4D15006A081A /* Alert-Icon-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alert-Icon-.png"; sourceTree = "<group>"; };
-		F75E2456181F4D15006A081A /* Lock-Unlock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lock-Unlock-icon.png"; sourceTree = "<group>"; };
-		F75E245A18217E37006A081A /* Lock-Lock-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lock-Lock-icon.png"; sourceTree = "<group>"; };
 		F75E245C18218626006A081A /* AlarmEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AlarmEffect.wav; sourceTree = "<group>"; };
 		F75E245E182186DC006A081A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F75E246018218775006A081A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F75E246218218BB9006A081A /* whistle_icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whistle_icon_114x114.png; sourceTree = "<group>"; };
 		F75E246618218F91006A081A /* whistle_icon_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whistle_icon_144x144.png; sourceTree = "<group>"; };
+		F75F97E71873249D000D44C1 /* ProtectoNavControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtectoNavControllerViewController.h; sourceTree = "<group>"; };
+		F75F97E81873249D000D44C1 /* ProtectoNavControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtectoNavControllerViewController.m; sourceTree = "<group>"; };
+		F783D8A31879D6CE00BD6649 /* Protecto_icon1_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Protecto_icon1_120.png; sourceTree = "<group>"; };
+		F783D8A41879D6CE00BD6649 /* Protecto_icon1_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Protecto_icon1_152.png; sourceTree = "<group>"; };
+		F783D8A51879D6CE00BD6649 /* Protecto_icon2_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Protecto_icon2_120.png; sourceTree = "<group>"; };
+		F783D8A61879D6CE00BD6649 /* Protecto_icon2_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Protecto_icon2_152.png; sourceTree = "<group>"; };
+		F783D8B1187A46F600BD6649 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
+		F783D8B2187A46F600BD6649 /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
+		F783D8B5187A53CC00BD6649 /* add-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-1.png"; sourceTree = "<group>"; };
+		F783D8B7187A795B00BD6649 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		F783D8B9188259DE00BD6649 /* 1389563609_lock-unlock_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1389563609_lock-unlock_blue.png"; sourceTree = "<group>"; };
+		F783D8BA188259DE00BD6649 /* 1389563845_lock_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1389563845_lock_blue.png; sourceTree = "<group>"; };
+		F783D8BD18825CAA00BD6649 /* 1389564581_circle_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1389564581_circle_red.png; sourceTree = "<group>"; };
+		F783D8BE18825CAA00BD6649 /* 1389564606_circle_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1389564606_circle_green.png; sourceTree = "<group>"; };
 		F784226117FF21F700557835 /* Protecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Protecto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F784226417FF21F700557835 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F784226617FF21F700557835 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,11 +93,19 @@
 		F784227617FF21F700557835 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F784227817FF21F700557835 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F784227A17FF21F700557835 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F784228217FF21F700557835 /* TraqBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraqBasicViewController.h; sourceTree = "<group>"; };
-		F784228317FF21F700557835 /* TraqBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraqBasicViewController.m; sourceTree = "<group>"; };
 		F785CED4180504E900B59F0A /* deviceSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deviceSelector.h; sourceTree = "<group>"; };
 		F785CED5180504E900B59F0A /* deviceSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deviceSelector.m; sourceTree = "<group>"; };
 		F785CED71805109300B59F0A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		F78702541866572F00A6F829 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		F78702551866572F00A6F829 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		F78702581866577400A6F829 /* ProtectoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtectoSettingsViewController.h; sourceTree = "<group>"; };
+		F78702591866577400A6F829 /* ProtectoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtectoSettingsViewController.m; sourceTree = "<group>"; };
+		F787025B186658B200A6F829 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		F78739D1186D2C2B00AFB076 /* 1388136450_30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1388136450_30@2x.png"; sourceTree = "<group>"; };
+		F78739D2186D2C2B00AFB076 /* 1388136493_54_Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1388136493_54_Settings@2x.png"; sourceTree = "<group>"; };
+		F78739D3186D2C2B00AFB076 /* 1388136530_519691-199_CircledPlus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1388136530_519691-199_CircledPlus@2x.png"; sourceTree = "<group>"; };
+		F78937DD187355DE00798088 /* math-minus-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "math-minus-icon.png"; sourceTree = "<group>"; };
+		F78937DE187355DE00798088 /* Sign-Add-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sign-Add-icon.png"; sourceTree = "<group>"; };
 		F78E754C1805030200939F65 /* BLEDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDevice.h; sourceTree = "<group>"; };
 		F78E754D1805030200939F65 /* BLEDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDevice.m; sourceTree = "<group>"; };
 		F78E754E1805030200939F65 /* BLEUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEUtility.h; sourceTree = "<group>"; };
@@ -70,6 +114,13 @@
 		F78E75511805030300939F65 /* SensorHistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHistoryData.m; sourceTree = "<group>"; };
 		F78E75521805030300939F65 /* Sensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensors.h; sourceTree = "<group>"; };
 		F78E75531805030300939F65 /* Sensors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensors.m; sourceTree = "<group>"; };
+		F7A1C8BE186F3E0A00501891 /* ProtectoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtectoMainViewController.h; sourceTree = "<group>"; };
+		F7A1C8BF186F3E0A00501891 /* ProtectoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtectoMainViewController.m; sourceTree = "<group>"; };
+		F7A1C8C11872086A00501891 /* AdditionalDevDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalDevDataController.h; sourceTree = "<group>"; };
+		F7A1C8C21872086A00501891 /* AdditionalDevDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalDevDataController.m; sourceTree = "<group>"; };
+		F7B59B84186B825F0042097D /* 1388136530_519691-199_CircledPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1388136530_519691-199_CircledPlus.png"; sourceTree = "<group>"; };
+		F7B59B85186B825F0042097D /* 1388136493_54_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1388136493_54_Settings.png; sourceTree = "<group>"; };
+		F7B59B88186B829D0042097D /* 1388136450_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1388136450_30.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +174,10 @@
 			children = (
 				F785CED4180504E900B59F0A /* deviceSelector.h */,
 				F785CED5180504E900B59F0A /* deviceSelector.m */,
+				F75F97E71873249D000D44C1 /* ProtectoNavControllerViewController.h */,
+				F75F97E81873249D000D44C1 /* ProtectoNavControllerViewController.m */,
+				F7A1C8C11872086A00501891 /* AdditionalDevDataController.h */,
+				F7A1C8C21872086A00501891 /* AdditionalDevDataController.m */,
 				F78E754C1805030200939F65 /* BLEDevice.h */,
 				F78E754D1805030200939F65 /* BLEDevice.m */,
 				F78E754E1805030200939F65 /* BLEUtility.h */,
@@ -133,11 +188,13 @@
 				F784227417FF21F700557835 /* PickProtectAppDelegate.m */,
 				F78E75521805030300939F65 /* Sensors.h */,
 				F78E75531805030300939F65 /* Sensors.m */,
-				F784228217FF21F700557835 /* TraqBasicViewController.h */,
-				F784228317FF21F700557835 /* TraqBasicViewController.m */,
 				F784226B17FF21F700557835 /* Supporting Files */,
 				F75E2451181F3D23006A081A /* PocketMaarViewController.h */,
 				F75E2452181F3D23006A081A /* PocketMaarViewController.m */,
+				F78702581866577400A6F829 /* ProtectoSettingsViewController.h */,
+				F78702591866577400A6F829 /* ProtectoSettingsViewController.m */,
+				F7A1C8BE186F3E0A00501891 /* ProtectoMainViewController.h */,
+				F7A1C8BF186F3E0A00501891 /* ProtectoMainViewController.m */,
 			);
 			path = PickProtect;
 			sourceTree = "<group>";
@@ -145,12 +202,33 @@
 		F784226B17FF21F700557835 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F783D8BD18825CAA00BD6649 /* 1389564581_circle_red.png */,
+				F783D8BE18825CAA00BD6649 /* 1389564606_circle_green.png */,
+				F783D8B9188259DE00BD6649 /* 1389563609_lock-unlock_blue.png */,
+				F783D8BA188259DE00BD6649 /* 1389563845_lock_blue.png */,
+				F783D8B7187A795B00BD6649 /* cross.png */,
+				F783D8B5187A53CC00BD6649 /* add-1.png */,
+				F783D8B1187A46F600BD6649 /* tick.png */,
+				F783D8B2187A46F600BD6649 /* warning.png */,
+				F783D8A61879D6CE00BD6649 /* Protecto_icon2_152.png */,
+				F783D8A31879D6CE00BD6649 /* Protecto_icon1_120.png */,
+				F783D8A41879D6CE00BD6649 /* Protecto_icon1_152.png */,
+				F783D8A51879D6CE00BD6649 /* Protecto_icon2_120.png */,
+				F78937DD187355DE00798088 /* math-minus-icon.png */,
+				F78937DE187355DE00798088 /* Sign-Add-icon.png */,
+				F78739D1186D2C2B00AFB076 /* 1388136450_30@2x.png */,
+				F78739D2186D2C2B00AFB076 /* 1388136493_54_Settings@2x.png */,
+				F78739D3186D2C2B00AFB076 /* 1388136530_519691-199_CircledPlus@2x.png */,
+				F7B59B88186B829D0042097D /* 1388136450_30.png */,
+				F7B59B84186B825F0042097D /* 1388136530_519691-199_CircledPlus.png */,
+				F7B59B85186B825F0042097D /* 1388136493_54_Settings.png */,
+				F787025B186658B200A6F829 /* settings.png */,
+				F78702541866572F00A6F829 /* add.png */,
+				F78702551866572F00A6F829 /* list.png */,
 				F75E246618218F91006A081A /* whistle_icon_144x144.png */,
 				F75E246218218BB9006A081A /* whistle_icon_114x114.png */,
 				F75E245C18218626006A081A /* AlarmEffect.wav */,
-				F75E245A18217E37006A081A /* Lock-Lock-icon.png */,
 				F75E2454181F4D15006A081A /* Alert-Icon-.png */,
-				F75E2456181F4D15006A081A /* Lock-Unlock-icon.png */,
 				F784226C17FF21F700557835 /* Protecto-Info.plist */,
 				F784226D17FF21F700557835 /* InfoPlist.strings */,
 				F784227017FF21F700557835 /* main.m */,
@@ -214,16 +292,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F783D8B4187A46F600BD6649 /* warning.png in Resources */,
 				F784226F17FF21F700557835 /* InfoPlist.strings in Resources */,
-				F75E245B18217E37006A081A /* Lock-Lock-icon.png in Resources */,
+				F783D8C018825CAB00BD6649 /* 1389564606_circle_green.png in Resources */,
+				F78739D6186D2C2B00AFB076 /* 1388136530_519691-199_CircledPlus@2x.png in Resources */,
+				F783D8BF18825CAB00BD6649 /* 1389564581_circle_red.png in Resources */,
 				F75E246718218F91006A081A /* whistle_icon_144x144.png in Resources */,
+				F783D8B8187A795B00BD6649 /* cross.png in Resources */,
+				F78937E0187355DE00798088 /* Sign-Add-icon.png in Resources */,
+				F783D8B3187A46F600BD6649 /* tick.png in Resources */,
+				F783D8A91879D6CE00BD6649 /* Protecto_icon2_120.png in Resources */,
 				F784227717FF21F700557835 /* Default.png in Resources */,
-				F75E2459181F4D15006A081A /* Lock-Unlock-icon.png in Resources */,
+				F783D8B6187A53CC00BD6649 /* add-1.png in Resources */,
+				F783D8A81879D6CE00BD6649 /* Protecto_icon1_152.png in Resources */,
+				F7B59B89186B829D0042097D /* 1388136450_30.png in Resources */,
+				F7B59B86186B825F0042097D /* 1388136530_519691-199_CircledPlus.png in Resources */,
 				F784227917FF21F700557835 /* Default@2x.png in Resources */,
+				F78702561866572F00A6F829 /* add.png in Resources */,
+				F783D8AA1879D6CE00BD6649 /* Protecto_icon2_152.png in Resources */,
+				F783D8BB188259DE00BD6649 /* 1389563609_lock-unlock_blue.png in Resources */,
 				F75E245D18218626006A081A /* AlarmEffect.wav in Resources */,
+				F783D8BC188259DE00BD6649 /* 1389563845_lock_blue.png in Resources */,
 				F75E246318218BBA006A081A /* whistle_icon_114x114.png in Resources */,
 				F784227B17FF21F700557835 /* Default-568h@2x.png in Resources */,
+				F78739D5186D2C2B00AFB076 /* 1388136493_54_Settings@2x.png in Resources */,
+				F787025C186658B200A6F829 /* settings.png in Resources */,
 				F75E2457181F4D15006A081A /* Alert-Icon-.png in Resources */,
+				F7B59B87186B825F0042097D /* 1388136493_54_Settings.png in Resources */,
+				F783D8A71879D6CE00BD6649 /* Protecto_icon1_120.png in Resources */,
+				F78702571866572F00A6F829 /* list.png in Resources */,
+				F78739D4186D2C2B00AFB076 /* 1388136450_30@2x.png in Resources */,
+				F78937DF187355DE00798088 /* math-minus-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,12 +336,15 @@
 				F75E2453181F3D23006A081A /* PocketMaarViewController.m in Sources */,
 				F784227117FF21F700557835 /* main.m in Sources */,
 				F784227517FF21F700557835 /* PickProtectAppDelegate.m in Sources */,
-				F784228417FF21F700557835 /* TraqBasicViewController.m in Sources */,
 				F78E75541805030300939F65 /* BLEDevice.m in Sources */,
+				F75F97E91873249D000D44C1 /* ProtectoNavControllerViewController.m in Sources */,
+				F7A1C8C31872086A00501891 /* AdditionalDevDataController.m in Sources */,
 				F78E75551805030300939F65 /* BLEUtility.m in Sources */,
 				F78E75561805030300939F65 /* SensorHistoryData.m in Sources */,
+				F787025A1866577400A6F829 /* ProtectoSettingsViewController.m in Sources */,
 				F78E75571805030300939F65 /* Sensors.m in Sources */,
 				F785CED6180504EA00B59F0A /* deviceSelector.m in Sources */,
+				F7A1C8C0186F3E0A00501891 /* ProtectoMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

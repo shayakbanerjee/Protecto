@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>bluetooth-central</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -14,6 +19,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>Protecto_icon2_120</string>
+				<string>Protecto_icon1_120</string>
 				<string>whistle_icon_114x114</string>
 			</array>
 		</dict>
@@ -24,6 +31,7 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>Protecto_icon2_152</string>
 				<string>whistle_icon_144x144</string>
 				<string>whistle_icon_114x114</string>
 			</array>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F784226017FF21F700557835"
-               BuildableName = "TraQ.app"
+               BuildableName = "Protecto.app"
                BlueprintName = "Protecto"
                ReferencedContainer = "container:Protecto.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F784226017FF21F700557835"
-            BuildableName = "TraQ.app"
+            BuildableName = "Protecto.app"
             BlueprintName = "Protecto"
             ReferencedContainer = "container:Protecto.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F784226017FF21F700557835"
-            BuildableName = "TraQ.app"
+            BuildableName = "Protecto.app"
             BlueprintName = "Protecto"
             ReferencedContainer = "container:Protecto.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F784226017FF21F700557835"
-            BuildableName = "TraQ.app"
+            BuildableName = "Protecto.app"
             BlueprintName = "Protecto"
             ReferencedContainer = "container:Protecto.xcodeproj">
          </BuildableReference>

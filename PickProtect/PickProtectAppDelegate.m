@@ -8,6 +8,7 @@
 
 #import "PickProtectAppDelegate.h"
 #import "deviceSelector.h"
+#import "ProtectoMainViewController.h"
 
 @implementation PickProtectAppDelegate
 
@@ -16,10 +17,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    deviceSelector *dS = [[deviceSelector alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *rC = [[UINavigationController alloc] initWithRootViewController:dS];
-    [rC setNavigationBarHidden:NO];
+    //deviceSelector *dS = [[deviceSelector alloc] initWithStyle:UITableViewStyleGrouped];
+    //ProtectoTabbedViewController *dS = [[ProtectoTabbedViewController alloc] initWithNibName:nil bundle:nil];
+    //UINavigationController *rC = [[UINavigationController alloc] initWithRootViewController:dS];
+    //[rC setNavigationBarHidden:NO];
     
+    ProtectoMainViewController *rC = [[ProtectoMainViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = rC;
     [self.window makeKeyAndVisible];
     return YES;
