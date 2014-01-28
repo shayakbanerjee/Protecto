@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BatteryLifeView.h"
 
 @interface ProtectoSettingsViewController : UITableViewController <UIAlertViewDelegate>
 

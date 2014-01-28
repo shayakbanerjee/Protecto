@@ -130,7 +130,6 @@
             [self.devTypes addObject:[periDetails objectAtIndex:4]];
             [self.devRanges addObject:[periDetails objectAtIndex:5]];
         }
-        NSLog(@"Finished reading list of stored Protecto devices");
     } else { NSLog(@"No devices are currently stored!"); }
 }
 
@@ -145,7 +144,7 @@
 }
 
 -(void)loadBatteryIndicator:(UITableViewCell*)cell forSection:(NSInteger)section {
-    UIProgressView* battLife = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    /*UIProgressView* battLife = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
     battLife.frame = CGRectMake(cell.bounds.origin.x + 0.40*cell.bounds.size.width, cell.bounds.origin.y + 0.3*cell.bounds.size.height, 0.40*cell.bounds.size.width, 0.4*cell.bounds.size.height);
     float batteryLife = 85.0/100.0;   // This will have to be read from device eventually
     [battLife setProgress:batteryLife];
@@ -153,7 +152,13 @@
     else { battLife.progressTintColor = [UIColor orangeColor]; }
     battLife.trackTintColor = [UIColor lightGrayColor];
     [cell.contentView addSubview:battLife];
+    */
+    float batteryLife = 85.0/100.0;
+    BatteryLifeView *battLife = [[BatteryLifeView alloc] initWithFrame:CGRectMake(cell.bounds.origin.x + 0.50*cell.bounds.size.width, cell.bounds.origin.y + 0.3*cell.bounds.size.height, 0.25*cell.bounds.size.width, 0.4*cell.bounds.size.height)];
+    battLife.backgroundColor = [UIColor clearColor];
+    [battLife setBatteryPercent:batteryLife];
     
+    [cell.contentView addSubview:battLife];
     UILabel *battLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.origin.x + 0.80*cell.bounds.size.width,cell.bounds.origin.y,0.20*cell.bounds.size.width,cell.bounds.size.height)];
     battLabel.text = [NSString stringWithFormat:@"(%d%%)",(NSInteger)(batteryLife*100)];
     battLabel.backgroundColor = [UIColor whiteColor];
@@ -173,7 +178,7 @@
     CGFloat slH = cell.bounds.size.height;
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(slX,slY,0.85*slW,slH)];
     slider.minimumValue = -110.0;
-    slider.maximumValue = -50.0;
+    slider.maximumValue = -70.0;
     slider.minimumValueImage = [UIImage imageNamed:@"math-minus-icon.png"];
     slider.maximumValueImage = [UIImage imageNamed:@"Sign-Add-icon.png"];
     slider.continuous = YES;
@@ -321,7 +326,7 @@
     [view addSubview:label];
     
     // Draw delete button
-    UIButton *imView = [[UIButton alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-32.0,10.0,20.0,20.0)];
+    UIButton *imView = [[UIButton alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-40.0,0.0,40.0,40.0)];
     [imView setImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateNormal];
     imView.backgroundColor = [UIColor clearColor];
     imView.tag = 6700+10*section+1;

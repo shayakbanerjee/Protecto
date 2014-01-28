@@ -313,7 +313,6 @@
                 [self.storedUUIDs addObject:[periDetails objectAtIndex:2]];
             }
         }
-        NSLog(@"Finished reading list of stored Protecto devices");
     } else {
         NSLog(@"No devices are currently stored!");
     }
@@ -323,47 +322,13 @@
 
 -(NSMutableDictionary *) makeSensorTagConfiguration {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    // First we set ambient temperature
-    [dic setValue:@"1" forKey:@"Ambient temperature active"];
-    // Then we set IR temperature
-    [dic setValue:@"1" forKey:@"IR temperature active"];
-    // Append the UUID to make it easy for app
-    [dic setValue:@"F000AA00-0451-4000-B000-000000000000"  forKey:@"IR temperature service UUID"];
-    [dic setValue:@"F000AA01-0451-4000-B000-000000000000" forKey:@"IR temperature data UUID"];
-    [dic setValue:@"F000AA02-0451-4000-B000-000000000000"  forKey:@"IR temperature config UUID"];
     // Then we setup the accelerometer
     [dic setValue:@"1" forKey:@"Accelerometer active"];
-    [dic setValue:@"16" forKey:@"Accelerometer period"];
+    [dic setValue:@"320" forKey:@"Accelerometer period"];
     [dic setValue:@"F000AA10-0451-4000-B000-000000000000"  forKey:@"Accelerometer service UUID"];
     [dic setValue:@"F000AA11-0451-4000-B000-000000000000"  forKey:@"Accelerometer data UUID"];
     [dic setValue:@"F000AA12-0451-4000-B000-000000000000"  forKey:@"Accelerometer config UUID"];
     [dic setValue:@"F000AA13-0451-4000-B000-000000000000"  forKey:@"Accelerometer period UUID"];
-    
-    //Then we setup the rH sensor
-    [dic setValue:@"1" forKey:@"Humidity active"];
-    [dic setValue:@"F000AA20-0451-4000-B000-000000000000"   forKey:@"Humidity service UUID"];
-    [dic setValue:@"F000AA21-0451-4000-B000-000000000000" forKey:@"Humidity data UUID"];
-    [dic setValue:@"F000AA22-0451-4000-B000-000000000000" forKey:@"Humidity config UUID"];
-    
-    //Then we setup the magnetometer
-    [dic setValue:@"1" forKey:@"Magnetometer active"];
-    [dic setValue:@"16" forKey:@"Magnetometer period"];
-    [dic setValue:@"F000AA30-0451-4000-B000-000000000000" forKey:@"Magnetometer service UUID"];
-    [dic setValue:@"F000AA31-0451-4000-B000-000000000000" forKey:@"Magnetometer data UUID"];
-    [dic setValue:@"F000AA32-0451-4000-B000-000000000000" forKey:@"Magnetometer config UUID"];
-    [dic setValue:@"F000AA33-0451-4000-B000-000000000000" forKey:@"Magnetometer period UUID"];
-    
-    //Then we setup the barometric sensor
-    [dic setValue:@"1" forKey:@"Barometer active"];
-    [dic setValue:@"F000AA40-0451-4000-B000-000000000000" forKey:@"Barometer service UUID"];
-    [dic setValue:@"F000AA41-0451-4000-B000-000000000000" forKey:@"Barometer data UUID"];
-    [dic setValue:@"F000AA42-0451-4000-B000-000000000000" forKey:@"Barometer config UUID"];
-    [dic setValue:@"F000AA43-0451-4000-B000-000000000000" forKey:@"Barometer calibration UUID"];
-    
-    [dic setValue:@"1" forKey:@"Gyroscope active"];
-    [dic setValue:@"F000AA50-0451-4000-B000-000000000000" forKey:@"Gyroscope service UUID"];
-    [dic setValue:@"F000AA51-0451-4000-B000-000000000000" forKey:@"Gyroscope data UUID"];
-    [dic setValue:@"F000AA52-0451-4000-B000-000000000000" forKey:@"Gyroscope config UUID"];
     
     NSLog(@"%@",dic);
     

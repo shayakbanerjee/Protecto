@@ -45,6 +45,8 @@
     self.isDisplayingWarning = NO;
     self.rSSI = 0;
     self.thresholdRSSI = -100;
+    self.rSSIHistory = [[NSMutableArray alloc] init];
+    self.sectionEnabled = -1;
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"AlarmEffect" ofType:@"wav"]];
     NSError *error = nil;
     if (error) NSLog(@"Error in audioPlayer: %@",[error localizedDescription]);
@@ -67,12 +69,26 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     if(self.isPocketMaarEnabled) {
+        if(self.d.p.isConnected) {
+            [self deconfigureSensorTag];
+            [self.d.manager cancelPeripheralConnection:self.d.p];
+        }
+        for(int i=0; i<[self.devNames count]; i++) {
+            NSInteger tg = 6601+10*i;
+            UISwitch* sw = (UISwitch*)[self.view viewWithTag:tg];
+            if([sw isOn]) {
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Turning off Protecto" message:@"Powering off all active Protecto Devices. Re-activate under Device List later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+                [sw setOn:NO animated:NO];
+            }
+        }
+        if([self.audioPlayer isPlaying]) [self.audioPlayer stop];
         for(BLEDevice* dev in self.availableDevices) dev.manager.delegate = nil;
         self.isPocketMaarEnabled = NO;
     }
     [self.m stopScan];
     self.m.delegate = nil;
-    [self.ppTimer invalidate];
+    //[self.ppTimer invalidate];   //This was being used for synchronous operation but now disabled
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -87,6 +103,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView reloadData];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error: nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
 -(void)refreshDeviceList {
@@ -96,6 +115,7 @@
     [self.devTypes removeAllObjects];
     [self.availableDevices removeAllObjects];
     [self.devLookup removeAllObjects];
+    [self.rSSIHistory removeAllObjects];
     
     // Scan for peripherals and re-read from file
     [self.m scanForPeripheralsWithServices:nil options:nil];
@@ -133,7 +153,7 @@
     CGFloat slH = 0.5*cell.bounds.size.height;
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(slX,(slY+slH),slW,(cell.bounds.size.height-slH))];
     slider.minimumValue = -110.0;
-    slider.maximumValue = -50.0;
+    slider.maximumValue = -70.0;
     slider.minimumValueImage = [UIImage imageNamed:@"math-minus-icon.png"];
     slider.maximumValueImage = [UIImage imageNamed:@"Sign-Add-icon.png"];
     slider.continuous = YES;
@@ -156,6 +176,39 @@
     
     [cell.contentView addSubview:slider];
     [cell.contentView addSubview:sliderLabel];
+}
+
+-(void)drawStartingLabel {
+    CGFloat sX = self.view.bounds.origin.x;
+    CGFloat sY = self.view.bounds.origin.y;
+    CGFloat sW = self.view.bounds.size.width;
+    CGFloat sH = self.view.bounds.size.height - 50.0;  //Account for tab bar height
+    UILabel* startLabel = [[UILabel alloc] initWithFrame:CGRectMake(sX+0.17*sW, sY+0.80*sH, 0.66*sW, 0.15*sH)];
+    startLabel.text = @"Welcome to Protecto. Click Add to get Started";
+    startLabel.tag = 5300;
+    startLabel.textColor = [UIColor whiteColor];
+    startLabel.shadowColor = [UIColor blackColor];
+    startLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+    startLabel.layer.cornerRadius = 8.0;
+    startLabel.font = [UIFont fontWithName:@"AmericanTypeWriter-Bold" size:16.0];
+    startLabel.textAlignment = NSTextAlignmentCenter;
+    startLabel.numberOfLines = 0;
+    startLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    startLabel.backgroundColor = [UIColor colorWithRed:0.0 green:157.0/255.0 blue:223.0/255.0 alpha:1.0];
+    [self.view addSubview:startLabel];
+    //Draw a triangle to go with that
+    CallOutView* callOut = [[CallOutView alloc] initWithFrame:CGRectMake(sX+0.45*sW, sY+0.93*sH, 0.1*sW, 0.06*sH)];
+    callOut.tag = 5301;
+    callOut.backgroundColor = [UIColor clearColor];
+    [callOut setNeedsDisplay];
+    [self.view addSubview:callOut];
+}
+
+-(void)removeStartingLabel {
+    UILabel* startLabel = (UILabel*)[self.view viewWithTag:5300];
+    [startLabel removeFromSuperview];
+    UIView* callOut = [self.view viewWithTag:5301];
+    [callOut removeFromSuperview];
 }
 
 -(IBAction)updateThreshold:(UISlider*)sender {
@@ -264,18 +317,25 @@
         if([sw isOn]) {
             self.isPocketMaarEnabled = YES;
             self.thresholdRSSI = [[self.devRanges objectAtIndex:section] integerValue];
+            self.activationTimeStamp = [NSDate date];
             if (!self.d.p.isConnected) {
                 self.d.manager.delegate = self;
                 [self.d.manager connectPeripheral:self.d.p options:nil];
             } else { self.d.p.delegate = self; }
-            self.ppTimer = [NSTimer scheduledTimerWithTimeInterval:PM_PERIOD target:self selector:@selector(ppDisplay:) userInfo:[NSNumber numberWithInteger:section] repeats:YES];
+            self.sectionEnabled = section;
+            [self.d.p readRSSI];   // Adding a version without timer capability
+            //self.ppTimer = [NSTimer scheduledTimerWithTimeInterval:PM_PERIOD target:self selector:@selector(ppDisplay:) userInfo:[NSNumber numberWithInteger:section] repeats:YES];
         } else {
             self.isPocketMaarEnabled = NO;
             [self removePMWarning:section];
+            NSLog(@"Total activation time was %f",[[NSDate date] timeIntervalSinceDate:self.activationTimeStamp]);
+            self.activationTimeStamp = nil;
             if (self.d.p.isConnected) {
+                [self deconfigureSensorTag];
                 [self.d.manager cancelPeripheralConnection:self.d.p];
             } else { self.d.p.delegate = nil; }
-            [self.ppTimer invalidate];
+            self.sectionEnabled = -1;
+            //[self.ppTimer invalidate];
         }
     }
 }
@@ -329,6 +389,35 @@
     return [val integerValue];
 }
 
+-(void) configureSensorTag {
+    // Configure sensortag, turning on Sensors and setting update period for sensors etc ...
+    if ([self sensorEnabled:@"Accelerometer active"]) {
+        CBUUID *sUUID = [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer service UUID"]];
+        CBUUID *cUUID = [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer config UUID"]];
+        CBUUID *pUUID = [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer period UUID"]];
+        //NSInteger period = [[self.d.setupData valueForKey:@"Accelerometer period"] integerValue];
+        uint8_t periodData = (uint8_t)(PM_PERIOD*1000.0/10.0);
+        NSLog(@"Accelerometer Period = %d",periodData*10);
+        [BLEUtility writeCharacteristic:self.d.p sCBUUID:sUUID cCBUUID:pUUID data:[NSData dataWithBytes:&periodData length:1]];
+        uint8_t data = 0x01;
+        [BLEUtility writeCharacteristic:self.d.p sCBUUID:sUUID cCBUUID:cUUID data:[NSData dataWithBytes:&data length:1]];
+        cUUID = [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer data UUID"]];
+        [BLEUtility setNotificationForCharacteristic:self.d.p sCBUUID:sUUID cCBUUID:cUUID enable:YES];
+    }
+}
+
+-(void) deconfigureSensorTag {
+    if ([self sensorEnabled:@"Accelerometer active"]) {
+        CBUUID *sUUID =  [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer service UUID"]];
+        CBUUID *cUUID =  [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer config UUID"]];
+        uint8_t data = 0x00;
+        [BLEUtility writeCharacteristic:self.d.p sCBUUID:sUUID cCBUUID:cUUID data:[NSData dataWithBytes:&data length:1]];
+        cUUID =  [CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer data UUID"]];
+        [BLEUtility setNotificationForCharacteristic:self.d.p sCBUUID:sUUID cCBUUID:cUUID enable:NO];
+    }
+}
+
+
 #pragma mark - CBCentralManager delegate function
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central {
@@ -368,12 +457,23 @@
 -(void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     peripheral.delegate = self;
     [peripheral discoverServices:nil];
+    if(self.isPocketMaarEnabled) [peripheral readRSSI];
+}
+
+-(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    // If peripheral connection is lost, try to regain it automatically. Time out after some limited tries
+    if(self.isPocketMaarEnabled) [self.d.manager connectPeripheral:peripheral options:nil];
+    self.rSSI = 0;
+    [self soundAlarmBasedOnRSSI];
 }
 
 #pragma mark - CBperipheral delegate functions
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     NSLog(@"..");
+    if ([service.UUID isEqual:[CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer service UUID"]]]) {
+        [self configureSensorTag];
+    }
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
@@ -386,7 +486,14 @@
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
-    
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:[self.d.setupData valueForKey:@"Accelerometer data UUID"]]]) {
+        char scratchVal[characteristic.value.length];
+        [characteristic.value getBytes:&scratchVal length:3];
+        //self.numberOfHoursActive = (NSInteger)scratchVal;
+        self.numberOfHoursActive = (NSUInteger)(pow(2.0, 16.0)*(NSUInteger)scratchVal[0]+pow(2.0,8.0)*(NSUInteger)scratchVal[1]+(NSUInteger)scratchVal[2]);
+        NSLog(@"Number of hours active = %d",self.numberOfHoursActive);
+    }
+    if(self.isPocketMaarEnabled) [peripheral readRSSI];
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
@@ -394,9 +501,32 @@
 }
 
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error {
-    //NSLog(@"RSSI Received at %f is %d dB",[[NSDate date] timeIntervalSince1970],[peripheral.RSSI integerValue]);
+    NSTimeInterval totalTimeElapsed = [[NSDate date] timeIntervalSinceDate:self.activationTimeStamp];
+    NSLog(@"RSSI Received at %f is %d dB",totalTimeElapsed,[peripheral.RSSI integerValue]);
     self.prevRSSI = self.rSSI;
     self.rSSI = [peripheral.RSSI integerValue];
+    [self.rSSIHistory addObject:[NSNumber numberWithInteger:self.rSSI]];
+    if([self.rSSIHistory count]>RSSI_HISTORY_SIZE) { [self.rSSIHistory removeObjectAtIndex:0]; }
+    [self soundAlarmBasedOnRSSI];
+}
+
+-(void)soundAlarmBasedOnRSSI {
+    // Adding these lines for asynchronous operation
+    NSInteger section = self.sectionEnabled;
+    NSTimeInterval totalTimeElapsed = [[NSDate date] timeIntervalSinceDate:self.activationTimeStamp];
+    float avgRSSI = 0.0;
+    for(int i=0; i<[self.rSSIHistory count]; i++) { avgRSSI += [[self.rSSIHistory objectAtIndex:i] integerValue]; }
+    if([self.rSSIHistory count]>0) { avgRSSI /= [self.rSSIHistory count]; }
+    if((self.rSSI==0 || (!self.d.p.isConnected)) && self.isPocketMaarEnabled ) {
+        if(!self.isDisplayingWarning && totalTimeElapsed>=ALLOWED_SETUP_TIME) [self displayPMWarning:section];
+        self.isDisplayingWarning = YES;
+    } else if(avgRSSI<=self.thresholdRSSI && self.isPocketMaarEnabled) {
+        if(!self.isDisplayingWarning && totalTimeElapsed>=ALLOWED_SETUP_TIME) [self displayPMWarning:section];
+        self.isDisplayingWarning = YES;
+    } else {
+        if(self.isDisplayingWarning) [self removePMWarning:section];
+        self.isDisplayingWarning = NO;
+    }
 }
 
 -(void)readPeripheralsFromFile {
@@ -421,7 +551,6 @@
             [self.devTypes addObject:[periDetails objectAtIndex:4]];
             [self.devRanges addObject:[periDetails objectAtIndex:5]];
         }
-        NSLog(@"Finished reading list of stored Protecto devices");
     } else { NSLog(@"No devices are currently stored!"); }
 }
 
@@ -429,6 +558,7 @@
 
 -(NSMutableDictionary *) makeSensorTagConfiguration {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    /*
     // First we set ambient temperature
     [dic setValue:@"1" forKey:@"Ambient temperature active"];
     // Then we set IR temperature
@@ -436,15 +566,16 @@
     // Append the UUID to make it easy for app
     [dic setValue:@"F000AA00-0451-4000-B000-000000000000"  forKey:@"IR temperature service UUID"];
     [dic setValue:@"F000AA01-0451-4000-B000-000000000000" forKey:@"IR temperature data UUID"];
-    [dic setValue:@"F000AA02-0451-4000-B000-000000000000"  forKey:@"IR temperature config UUID"];
+    [dic setValue:@"F000AA02-0451-4000-B000-000000000000"  forKey:@"IR temperature config UUID"];*/
     // Then we setup the accelerometer
     [dic setValue:@"1" forKey:@"Accelerometer active"];
-    [dic setValue:@"16" forKey:@"Accelerometer period"];
+    [dic setValue:@"320" forKey:@"Accelerometer period"];
     [dic setValue:@"F000AA10-0451-4000-B000-000000000000"  forKey:@"Accelerometer service UUID"];
     [dic setValue:@"F000AA11-0451-4000-B000-000000000000"  forKey:@"Accelerometer data UUID"];
     [dic setValue:@"F000AA12-0451-4000-B000-000000000000"  forKey:@"Accelerometer config UUID"];
     [dic setValue:@"F000AA13-0451-4000-B000-000000000000"  forKey:@"Accelerometer period UUID"];
     
+    /*
     //Then we setup the rH sensor
     [dic setValue:@"1" forKey:@"Humidity active"];
     [dic setValue:@"F000AA20-0451-4000-B000-000000000000"   forKey:@"Humidity service UUID"];
@@ -470,7 +601,7 @@
     [dic setValue:@"F000AA50-0451-4000-B000-000000000000" forKey:@"Gyroscope service UUID"];
     [dic setValue:@"F000AA51-0451-4000-B000-000000000000" forKey:@"Gyroscope data UUID"];
     [dic setValue:@"F000AA52-0451-4000-B000-000000000000" forKey:@"Gyroscope config UUID"];
-    
+    */
     NSLog(@"Finished setting up SetupData");
     return dic;
 }
@@ -478,6 +609,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if([self.devNames count] ==0) {
+        [self removeStartingLabel];
+        [self drawStartingLabel];
+    } else { [self removeStartingLabel]; }
     return [self.devNames count]+1;   // The +1 is for the refresh button
 }
 
